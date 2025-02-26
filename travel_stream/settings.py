@@ -22,11 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-#9d-ofrpf=(4&0s*r#ewrbq7+^*s%x#_gg40jovhd#5c&7gsbn'
 
+SECURE_SSL_REDIRECT = True
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = ["travelstreamapp.com", f"{APP_NAME}.fly.dev", "127.0.0.1"]
+ALLOWED_HOSTS = ["travelstreamapp.com", "www.travelstreamapp.com", f"{APP_NAME}.fly.dev", "127.0.0.1"]
 
 
 # Application definition
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dashboard.middleware.RedirectToNonWww',
 ]
 
 ROOT_URLCONF = 'travel_stream.urls'
