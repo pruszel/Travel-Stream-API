@@ -10,22 +10,35 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import environ
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECURE_SSL_REDIRECT=(bool, False),
+    USE_X_FORWARDED_HOST=(bool, False),
+    SECURE_PROXY_SSL_HEADER=(tuple, None)
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#9d-ofrpf=(4&0s*r#ewrbq7+^*s%x#_gg40jovhd#5c&7gsbn'
+SECRET_KEY = env.str('SECRET_KEY', default=get_random_secret_key())
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
+USE_X_FORWARDED_HOST = env('USE_X_FORWARDED_HOST')
+SECURE_PROXY_SSL_HEADER = env('SECURE_PROXY_SSL_HEADER')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
 ALLOWED_HOSTS = ["travelstreamapp.com", "www.travelstreamapp.com", f"{APP_NAME}.fly.dev", "127.0.0.1"]
