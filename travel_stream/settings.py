@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#9d-ofrpf=(4&0s*r#ewrbq7+^*s%x#_gg40jovhd#5c&7gsbn
 DEBUG = True
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev", "127.0.0.1"]
+ALLOWED_HOSTS = ["travelstreamapp.com", f"{APP_NAME}.fly.dev", "127.0.0.1"]
 
 
 # Application definition
