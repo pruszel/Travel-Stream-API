@@ -40,7 +40,7 @@ SECURE_PROXY_SSL_HEADER = env('SECURE_PROXY_SSL_HEADER')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-APP_NAME = os.environ.get("FLY_APP_NAME")
+APP_NAME = env("FLY_APP_NAME", default="travel-stream")
 ALLOWED_HOSTS = ["travelstreamapp.com", "www.travelstreamapp.com", f"{APP_NAME}.fly.dev", "127.0.0.1"]
 
 
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'dashboard.middleware.RedirectToNonWww',
+    'dashboard.middleware.DomainRedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'travel_stream.urls'
