@@ -1,10 +1,10 @@
-# Travel Stream
+# Travel Stream API
 
-_Streamline your travel planning._
+REST API for the [Travel Stream web app](https://travelstreamapp.com) available at [api.travelstreamapp.com](https://api.travelstreamapp.com).
 
 ## Development
 
-The backend is built with [Django](https://www.djangoproject.com/). Two Django apps are set up: `users` for user auth and `dashboard` for the UI that users will be interacting with.
+The API is built with [Django](https://www.djangoproject.com/). Two Django apps are set up: `users` for user auth and `dashboard` for the trip data users will be interacting with through the dashboard UI.
 
 ### Requirements
 
@@ -28,7 +28,7 @@ The backend is built with [Django](https://www.djangoproject.com/). Two Django a
 
 ## Deployment
 
-All hosted services are deployed on Fly.io.
+The API is deployed with Fly.io.
 
 ### Requirements
 
