@@ -37,6 +37,8 @@ SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
 USE_X_FORWARDED_HOST = env('USE_X_FORWARDED_HOST')
 SECURE_PROXY_SSL_HEADER = env('SECURE_PROXY_SSL_HEADER')
 
+CORS_ALLOWED_ORIGINS = ["https://travelstreamapp.com", "http://127.0.0.1:5173"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
@@ -53,11 +55,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'users',
     'dashboard',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
